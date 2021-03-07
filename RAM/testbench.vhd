@@ -46,9 +46,8 @@ begin
   begin
     ------------------------------------------------------------
     -----------------Inputs RISCV_Register_file SIMULATION------
-    --(32*32 - 1)
     for i in 0 to 5 loop
-	  data <= x"FFFFFFFF";
+	    data <= x"FFFFFFFF";
       write_address<= 5;
       read_address<=0;
       wait for 3*CLK_PERIOD;
@@ -56,7 +55,7 @@ begin
       read_address<=5; 
       wait for 3*CLK_PERIOD;
 
-	  data <= x"FFFF000F";
+	    data <= x"FFFF000F";
       write_address<= 1;
       read_address<=1;
       wait for 3*CLK_PERIOD;
