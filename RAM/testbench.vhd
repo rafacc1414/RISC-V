@@ -15,11 +15,11 @@ architecture tb of testbench is
   
   ---------------------------------------------
   ----------------RISCV_Register_File----------
-  signal    data				:  	   std_logic_vector (31 DOWNTO 0);
+  signal    data				    :  	   std_logic_vector (31 DOWNTO 0);
   signal    write_address		:  	   integer RANGE 0 to 31;
   signal    read_address		:      integer RANGE 0 to 31;
-  signal    we					:      std_logic := '1';
-  signal    q					:      std_logic_vector (31 DOWNTO 0);
+  signal    we				    	:      std_logic := '1';
+  signal    q					      :      std_logic_vector (31 DOWNTO 0);
   ---------------------------------------------
   
   

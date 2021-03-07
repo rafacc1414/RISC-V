@@ -1,10 +1,9 @@
 -- Code your testbench here
 library ieee;
 use ieee.std_logic_1164.all;
+USE ieee.numeric_std.ALL;
 use std.env.all;
 use work.register_pkg.all;
-
-
 
 entity testbench is
 end entity testbench;
@@ -17,32 +16,32 @@ architecture tb of testbench is
   ---------------- Flip-Flop D-----------------
   signal D    : std_logic := '0';		-- in
   signal E    : std_logic := '0';		-- in
-  signal Q    : std_logic;				-- out
+  signal Q    : std_logic;				  -- out
   ---------------------------------------------
   
   
   ---------------------------------------------
   ----------------RISCV_Register---------------
   signal D_r    : std_logic_vector(32-1 downto 0):= x"00000001";	-- in
-  signal E_r    : std_logic := '0';									-- in
-  signal Q_r    : std_logic_vector(32-1 downto 0);					-- out
+  signal E_r    : std_logic := '0';									              -- in
+  signal Q_r    : std_logic_vector(32-1 downto 0);					      -- out
   ---------------------------------------------
   
   
   ---------------------------------------------
   ----------------RISCV_Register_File----------
-  signal we		: std_logic:='1';						    -- in we = Write enable
+  signal we		    : std_logic:='1';						                -- in we = Write enable
             
-  signal rs1,rs2: std_logic_vector(5-1 downto 0):= "00000";	-- in rs = Read Selection	    		
-  signal ws		: std_logic_vector(5-1 downto 0);	-- in ws = Write Selection
+  signal rs1,rs2  : std_logic_vector(5-1 downto 0):= "00000";	-- in rs = Read Selection	    		
+  signal ws	    	: std_logic_vector(5-1 downto 0);          	-- in ws = Write Selection
 			
-  signal wd		: std_logic_vector(32-1 downto 0);		-- in wd = Write Data
+  signal wd		    : std_logic_vector(32-1 downto 0);		      -- in wd = Write Data
             
-  signal rd1,rd2: std_logic_vector(32-1 downto 0);		-- out rd = Read Data
+  signal rd1,rd2  : std_logic_vector(32-1 downto 0);	        -- out rd = Read Data
   ---------------------------------------------
   
   
-  signal done : boolean := false;
+  signal done         : boolean := false;
   constant CLK_PERIOD : time := 1 ns; 
     
 begin
@@ -70,66 +69,80 @@ begin
   -- Stimulus Generator Process--
   stim_gen: process
   begin
- /*
 	------------------------------------------------------------
     -----------------Inputs SIMULATION--------------------------
     for i in 0 to 2 loop
       D <= '1';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 
       E <= '1';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 
       D <= '0';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 
       E <= '0';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
     end loop;
     
     
     ------------------------------------------------------------
     -----------------Inputs RISCV_Register SIMULATION-----------
-    --(32*32 - 1)
-    for i in 0 to 5 loop
-      D_r <= D_r sll 1;
-      wait for 3*CLK_PERIOD;
+    -- Uncommented to simulate the case we write from x"00000000" to x"FFFFFFFF"    
+    /*
+    for i in 0 to 16 loop
+      D_r <= std_logic_vector(unsigned(D_r) + 1);
+      wait for CLK_PERIOD;
 
       E_r <= '1';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 
-      D_r <= D_r sll 1;
-      wait for 3*CLK_PERIOD;
+      D_r <= std_logic_vector(unsigned(D_r) + 1);
+      wait for CLK_PERIOD;
 
       E_r <= '0';
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
     end loop;
- */      
+    */
+    
+    -- Uncomment the next part in case you want to simulate de case when goes from x"FFFFFFFF" to x"00000000"
+    /* 
+    for i in 0 to 16 loop
+      D_r <= std_logic_vector(unsigned(D_r) - 1);
+      wait for CLK_PERIOD;
+
+      E_r <= '1';
+      wait for CLK_PERIOD;
+
+      D_r <= std_logic_vector(unsigned(D_r) - 1);
+      wait for CLK_PERIOD;
+
+      E_r <= '0';
+      wait for CLK_PERIOD;
+    end loop;
+    */      
     ------------------------------------------------------------
     -----------------Inputs RISCV_Register_file SIMULATION------
-    --(32*32 - 1)
     for i in 0 to 5 loop
       rs1 <= "00100"; 
       rs2<="01000";
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 		
       ws <= "01000";  
       wd <=x"FFFFFFFF";
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
 
       rs1<="01000";
       rs2 <= "00100";
-      wait for 3*CLK_PERIOD;
+      wait for CLK_PERIOD;
       
       rs1<="01100";
       ws <= "01100";  
       wd <=x"FFFFFF00";
-      wait for 3*CLK_PERIOD;
-    end loop;
-    
-   
-    
-    
+      wait for CLK_PERIOD;
+
+      we <= not(we);
+    end loop; 
     
     done <= true;
     report "All DONE";

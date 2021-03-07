@@ -12,27 +12,24 @@ entity RISCV_Register_file is
     	
 	port (  
     		CLK		 	: in std_logic;			
-            we 			: in std_logic;						    -- we = Write enable
+            we 			: in std_logic;						        -- we = Write enable
             
     		rs1,rs2 	: in std_logic_vector(n_cod-1 downto 0); 	-- rs = Read Selection	
     		
             ws			: in std_logic_vector(n_cod-1 downto 0);	-- ws = Write Selection
 			
-            wd 			: in std_logic_vector(n-1 downto 0);	-- wd = Write Data
+            wd 			: in std_logic_vector(n-1 downto 0);	    -- wd = Write Data
             
-            rd1,rd2		: out std_logic_vector(n-1 downto 0)	-- rd = Read Data
+            rd1,rd2		: out std_logic_vector(n-1 downto 0)	    -- rd = Read Data
          );      
 end RISCV_Register_file;
 
 -- architecture
 architecture rtl of RISCV_Register_file is
 
-type signals is array (0 to 31) of std_logic_vector(31 downto 0);
-signal input_register : signals := (others => (others => '0'));
-signal output : signals := (others => (others => '0'));
-
---signal input_register : std_logic_vector(32*(n-1) downto 0);
---signal output 		  : std_logic_vector(32*(n-1) downto 0);
+type signals is array (0 to 31) of std_logic_vector(31 downto 0);   -- we create an array type which each cell of the array contains an std_logic_vector of 32 bits
+signal input_register   : signals := (others => (others => '0'));   -- Intermidiate signal which contains the input of the registers
+signal output           : signals := (others => (others => '0'));   -- Intermidiate signal which contains the ouput of the registers
 
 begin
 Registers: for i in 0 to n-1 generate
@@ -48,7 +45,7 @@ begin
 end process READ;
 
 
-WRITE: process(ws,CLK)
+WRITE: process(CLK)
   begin
     if (rising_edge(CLK)) then
     	input_register(to_integer(unsigned(ws))) <= wd;

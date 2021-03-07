@@ -7,11 +7,11 @@ use IEEE.std_logic_1164.all;
 -- entity
 entity d_ff is
 	port (  
-    		CLK : in std_logic;
-    		D 	: in std_logic;		
-    		E 	: in std_logic;		-- enable
-			Q 	: out std_logic
-         );
+    		CLK : in  std_logic;
+    		D 	: in  std_logic;		
+    		E 	: in  std_logic;		    -- enable
+		  	Q 	: out std_logic
+       );
 end d_ff;
 
 -- architecture
@@ -25,7 +25,6 @@ begin
     		S <= D;
         else
         	S <= S;
-
         end if;
   end if;
   end process dff;

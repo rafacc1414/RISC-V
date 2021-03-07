@@ -3,12 +3,12 @@ USE ieee.std_logic_1164.ALL;
 ENTITY ram_infer IS
    PORT
    (
-      clk				: 	IN   std_logic;
+      clk				: 	   IN   std_logic;
       data				:  	IN   std_logic_vector (31 DOWNTO 0);
-      write_address		:  	IN   integer RANGE 0 to 31;
-      read_address		:   IN   integer RANGE 0 to 31;
-      we				:   IN   std_logic;
-      q					:   OUT  std_logic_vector (31 DOWNTO 0)
+      write_address	:  	IN   integer RANGE 0 to 31;
+      read_address	:     IN   integer RANGE 0 to 31;
+      we				   :     IN   std_logic;
+      q					:     OUT  std_logic_vector (31 DOWNTO 0)
    );
 END ram_infer;
 ARCHITECTURE rtl OF ram_infer IS
