@@ -88,7 +88,7 @@ begin
     
     ------------------------------------------------------------
     -----------------Inputs RISCV_Register SIMULATION-----------
-    -- Uncommented to simulate the case we write from x"00000000" to x"FFFFFFFF"    
+    -- Uncomment to simulate the case we write from x"00000000" to x"FFFFFFFF"    
     /*
     for i in 0 to 16 loop
       D_r <= std_logic_vector(unsigned(D_r) + 1);
