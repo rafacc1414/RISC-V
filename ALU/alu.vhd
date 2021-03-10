@@ -19,15 +19,15 @@ port
 end entity alu;
 
 architecture behavioral of alu is
-		signal A_reg, B_reg : std_logic_vector (31 downto 0) := (others => '0');
-		signal F3_reg       : std_logic_vector (2 downto 0)  := "000";
-		signal F7_reg       : std_logic_vector (6 downto 0)  := "0000000";
+	signal A_reg, B_reg : std_logic_vector (31 downto 0) := (others => '0');
+	signal F3_reg       : std_logic_vector (2 downto 0)  := "000";
+	signal F7_reg       : std_logic_vector (6 downto 0)  := "0000000";
 		
-		signal R_async                   : std_logic_vector (31 downto 0) := (others => '0');
-		signal Z_async, S_async, O_async : std_logic := '0';
+	signal R_async                   : std_logic_vector (31 downto 0) := (others => '0');
+	signal Z_async, S_async, O_async : std_logic := '0';
 		
-		type op_type is (ADD, SUB, SLLop, SLT, SLTU, XORop, SRLop, SRAop, ORop, ANDop, ERROR);
-		signal Operation : op_type := ERROR;
+	type op_type is (ADD, SUB, SLLop, SLT, SLTU, XORop, SRLop, SRAop, ORop, ANDop, ERROR);
+	signal Operation : op_type := ERROR;
 		
 begin
 
