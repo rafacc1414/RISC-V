@@ -1,7 +1,7 @@
 -- Code your design here
 library IEEE;
 use IEEE.std_logic_1164.all;
-use work.pkg.all;
+use work.register_pkg.all;
 
 entity RISCV_Register is
 

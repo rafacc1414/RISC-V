@@ -3,14 +3,14 @@ use ieee.std_logic_1164.all;
 
 package register_pkg is
 
-	component d_ff is
+	component FF_D is
 	port (  
     		CLK : in std_logic;
     		D 	: in std_logic;		
     		E 	: in std_logic;		-- enable
 			Q 	: out std_logic
          );
-	end component d_ff;
+	end component FF_D;
     
     component RISCV_Register is
     generic(n:integer:=32);

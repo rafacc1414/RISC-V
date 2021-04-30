@@ -46,7 +46,7 @@ architecture tb of testbench is
     
 begin
 
-  d1: d_ff
+  d1: FF_D
   port map(clk=>clk, D =>D, E=>E, Q=>Q); 
     
   R0: RISCV_Register

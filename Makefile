@@ -70,7 +70,7 @@ test_ram: ram
 regs: work
 	ghdl -a --workdir=$(WORKDIR) --std=08 Registers/package.vhd
 	ghdl -a --workdir=$(WORKDIR) --std=08 Registers/FF_D.vhd
-	ghdl -a --workdir=$(WORKDIR) --std=08 Registers/RISCV_register.vhd
+	ghdl -a --workdir=$(WORKDIR) --std=08 Registers/RISCV_Register.vhd
 	ghdl -a --workdir=$(WORKDIR) --std=08 Registers/register_file.vhd
 	ghdl -e --workdir=$(WORKDIR) --std=08 RISCV_register_file
 
