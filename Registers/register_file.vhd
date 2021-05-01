@@ -4,6 +4,12 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.register_pkg.all;
 
+-- Implement a bank of 32 32-bit RISC V registers. Two registers can be read at
+-- once via the signals rs1, rs2. The outputs are placed on rd1, rd2.
+-- To write in a register, 'we' must be equal to one. Then, 'ws' will select the 
+-- register which will be written and 'wd' will contain the data to write in 
+-- the selected registers
+
 entity RISCV_Register_file is
 
 generic(
