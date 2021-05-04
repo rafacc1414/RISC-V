@@ -23,8 +23,7 @@ port (
 	rs1,rs2 	  : in std_logic_vector(n_cod-1 downto 0); -- rs = Read Selection	
 	ws			  : in std_logic_vector(n_cod-1 downto 0); -- ws = Write Selection
 	wd 			  : in std_logic_vector(n-1 downto 0);     -- wd = Write Data
-	rd1,rd2		  : out std_logic_vector(n-1 downto 0);    -- rd = Read Data
-	read_validity : out std_logic
+	rd1,rd2		  : out std_logic_vector(n-1 downto 0)     -- rd = Read Data
 );
 end RISCV_Register_file;
 
@@ -45,15 +44,7 @@ begin
 	begin
 		rd1 <= output(to_integer(unsigned(rs1)));
 		rd2 <= output(to_integer(unsigned(rs2)));
-		read_validity <= '1';
 	end process READ;
-
-	read_validity_process : process (CLK)
-	begin
-		if (falling_edge(CLK)) then
-			read_validity <= '0';
-		end if;
-	end process read_validity_process;
 
 	WRITE: process(CLK)
 	begin
