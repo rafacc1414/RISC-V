@@ -2,6 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use std.env.finish;
 
 entity testbench is
 end entity testbench;
@@ -61,10 +62,18 @@ begin
 			wait for 33*CLK_PERIOD;
 			f7 <= "0100000";
 		end if;
+		wait for 10*CLK_PERIOD;
+		done <= true;
 	end process F7_F3_stimulus;
 	
 	uut_ALU : ALU generic map(N => 4)
 	port map (clk,a,b,f3,f7,r,z,s,o);
-	
-	
+
+	finish_process : process (clk) is
+	begin
+		if done then
+			finish;
+		end if;
+	end process finish_process;
+
 end tb;
