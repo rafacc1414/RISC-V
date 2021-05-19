@@ -47,5 +47,5 @@ begin
 	   f7_out  <= f7_aux;
 	end if;
 end process output_reg;
-  
+
 end rtl;

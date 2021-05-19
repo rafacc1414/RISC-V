@@ -18,12 +18,12 @@ generic(
 );
 
 port (
-	CLK		 	  : in std_logic;
-	we 			  : in std_logic;                          -- we = Write enable
-	rs1,rs2 	  : in std_logic_vector(n_cod-1 downto 0); -- rs = Read Selection	
-	ws			  : in std_logic_vector(n_cod-1 downto 0); -- ws = Write Selection
-	wd 			  : in std_logic_vector(n-1 downto 0);     -- wd = Write Data
-	rd1,rd2		  : out std_logic_vector(n-1 downto 0)     -- rd = Read Data
+	CLK       : in std_logic;
+	we        : in std_logic;                          -- we = Write enable
+	rs1,rs2   : in std_logic_vector(n_cod-1 downto 0); -- rs = Read Selection	
+	ws        : in std_logic_vector(n_cod-1 downto 0); -- ws = Write Selection
+	wd        : in std_logic_vector(n-1 downto 0);     -- wd = Write Data
+	rd1,rd2   : out std_logic_vector(n-1 downto 0)     -- rd = Read Data
 );
 end RISCV_Register_file;
 
