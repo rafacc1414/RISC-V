@@ -2,7 +2,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity ALU_synchroniser is
+entity ALU_Synchronizer is
 port (  
 	CLK           : in  std_logic;
 	rd1_in        : in  std_logic;
@@ -15,10 +15,10 @@ port (
 	f3_out        : out std_logic;
 	f7_out        : out std_logic
 );
-end ALU_synchroniser;
+end ALU_Synchronizer;
 
 -- architecture
-architecture rtl of ALU_synchroniser is
+architecture rtl of ALU_Synchronizer is
 
 signal rd1_aux, rd2_aux     : std_logic;
 signal f3_aux               : std_logic;
